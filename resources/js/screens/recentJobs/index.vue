@@ -33,8 +33,6 @@
             this.updatePageTitle();
 
             this.loadJobs();
-
-            this.refreshJobsPeriodically();
         },
 
 

@@ -24,10 +24,6 @@
          */
         mounted() {
             document.title = "Horizon - Failed Jobs";
-
-            this.loadJobs();
-
-            this.refreshJobsPeriodically();
         },
 
 

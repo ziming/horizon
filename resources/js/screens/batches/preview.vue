@@ -17,8 +17,6 @@
          * Prepare the component.
          */
         mounted() {
-            this.loadBatch();
-
             document.title = "Horizon - Batches";
         },
 

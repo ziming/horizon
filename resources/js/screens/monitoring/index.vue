@@ -21,10 +21,6 @@
          */
         mounted() {
             document.title = "Horizon - Monitoring";
-
-            this.loadTags();
-
-            this.refreshTagsPeriodically();
         },
 
 

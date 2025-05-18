@@ -23,8 +23,6 @@
          */
         mounted() {
             document.title = "Horizon - Dashboard";
-
-            this.refreshStatsPeriodically();
         },
 
 

@@ -35,8 +35,6 @@
             document.title = "Horizon - Monitoring";
 
             this.loadJobs(this.$route.params.tag);
-
-            this.refreshJobsPeriodically();
         },
 
 

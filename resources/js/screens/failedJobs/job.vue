@@ -50,7 +50,6 @@
                 this.$http.get(Horizon.basePath + '/api/jobs/failed/' + this.$route.params.jobId)
                     .then(response => {
                         this.job.retried_by = response.data.retried_by;
-
                     });
             },
 

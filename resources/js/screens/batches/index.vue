@@ -19,10 +19,6 @@
          */
         mounted() {
             document.title = "Horizon - Batches";
-
-            this.loadBatches();
-
-            this.refreshBatchesPeriodically();
         },
 
 
