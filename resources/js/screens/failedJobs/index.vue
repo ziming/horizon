@@ -18,6 +18,7 @@
             };
         },
 
+
         /**
          * Prepare the component.
          */
@@ -27,13 +28,6 @@
             this.loadJobs();
 
             this.refreshJobsPeriodically();
-        },
-
-        /**
-         * Clean after the component is unmounted.
-         */
-        unmounted() {
-            clearInterval(this.interval);
         },
 
 
@@ -47,9 +41,9 @@
                 this.loadJobs();
             },
 
+
             tagSearchPhrase() {
                 clearTimeout(this.searchTimeout);
-                clearInterval(this.interval);
 
                 this.searchTimeout = setTimeout(() => {
                     this.loadJobs();
@@ -150,6 +144,7 @@
                 return job.payload.retry_of;
             },
 
+
             /**
              * Construct the tooltip label for a retried job.
              */
@@ -159,13 +154,12 @@
                 return `Total retries: ${job.retried_by.length}, Last retry status: ${this.upperFirst(lastRetry.status)}`;
             },
 
+
             /**
-             * Refresh the jobs every period of time.
+             * Poll handler to refresh the jobs at regular intervals.
              */
             refreshJobsPeriodically() {
-                this.interval = setInterval(() => {
-                    this.loadJobs((this.page - 1) * this.perPage, true);
-                }, 3000);
+                this.loadJobs((this.page - 1) * this.perPage, true);
             },
 
 
@@ -201,6 +195,8 @@
 
 <template>
     <div>
+        <poll @poll="refreshJobsPeriodically" />
+
         <div class="card overflow-hidden">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <h2 class="h6 m-0">Failed Jobs</h2>

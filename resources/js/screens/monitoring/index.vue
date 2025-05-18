@@ -27,12 +27,6 @@
             this.refreshTagsPeriodically();
         },
 
-        /**
-         * Clean up after the component is unmounted.
-         */
-        unmounted() {
-            clearInterval(this.interval);
-        },
 
         methods: {
             /**
@@ -47,14 +41,14 @@
                     });
             },
 
+
             /**
-             * Refresh the tags every period of time.
+             * Poll handler to refresh the jobs at regular intervals.
              */
             refreshTagsPeriodically() {
-                this.interval = setInterval(() => {
-                    this.loadTags();
-                }, 3000);
+                this.loadTags();
             },
+
 
             /**
              * Open the modal for adding a new tag.
@@ -110,6 +104,7 @@
                 this.newTag = '';
             },
 
+
             /**
              * Stop monitoring the given tag.
              */
@@ -125,6 +120,8 @@
 
 <template>
     <div>
+        <poll @poll="refreshTagsPeriodically" />
+
         <div class="card overflow-hidden">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <h2 class="h6 m-0">Monitoring</h2>

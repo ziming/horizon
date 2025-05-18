@@ -1,0 +1,104 @@
+<script type="text/ecmascript-6">
+    export default {
+        data() {
+            return {
+                loading: 0,
+                lastExecTime: 0,
+                pollingInterval: null,
+            }
+        },
+
+
+        props: {
+            interval: {
+                type: Number,
+                default: 3,
+            },
+
+            keepAlive: {
+                type: Boolean,
+                default: false,
+            }
+        },
+
+
+        beforeMount() {
+            this.updatePollingInterval();
+            this.emitPoll();
+        },
+
+
+        mounted() {
+            this.createListener();
+
+            if (!this.keepAlive) {
+                document.addEventListener('visibilitychange', this.visibilitychangeListener = this.changedVisibility);
+            }
+        },
+
+
+        beforeUnmount() {
+            this.removeListener();
+
+            if (this.visibilitychangeListener) {
+                document.removeEventListener('visibilitychange', this.visibilitychangeListener);
+            }
+        },
+
+
+        methods: {
+            emitPoll() {
+                if (this.loading) {
+                    return;
+                }
+
+                this.loading++;
+                this.$emit('poll');
+                this.loading--;
+                this.lastExecTime = Date.now();
+            },
+
+
+            removeListener() {
+                if (this.poll) {
+                    clearInterval(this.poll);
+                    this.poll = null;
+                }
+            },
+
+
+            createListener() {
+                this.poll = setInterval(() => {
+                    this.emitPoll();
+                }, this.pollingInterval);
+            },
+
+
+            updatePollingInterval() {
+                if (this.keepAlive) {
+                    this.pollingInterval = this.interval * 1000;
+                    return;
+                }
+
+                if (document.visibilityState === 'visible') {
+                    this.pollingInterval = 1000 * this.interval;
+                } else if (document.visibilityState === 'hidden') {
+                    // one hour
+                    this.pollingInterval = 1000 * 60 * 60;
+                }
+            },
+
+
+            changedVisibility() {
+                this.updatePollingInterval();
+                this.removeListener();
+                this.createListener();
+
+                // throttling
+                if ((Date.now() - this.lastExecTime) >= this.pollingInterval) {
+                    this.emitPoll();
+                }
+            },
+        }
+    }
+</script>
