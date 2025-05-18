@@ -74,7 +74,7 @@
 
 
             /**
-             * Poll handler to refresh the jobs at regular intervals.
+             * Poll handler to refresh the batches at regular intervals.
              */
             refreshBatchesPeriodically() {
                 if (this.page != 1) return;

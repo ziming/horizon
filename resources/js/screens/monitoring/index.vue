@@ -43,7 +43,7 @@
 
 
             /**
-             * Poll handler to refresh the jobs at regular intervals.
+             * Poll handler to refresh the tags at regular intervals.
              */
             refreshTagsPeriodically() {
                 this.loadTags();

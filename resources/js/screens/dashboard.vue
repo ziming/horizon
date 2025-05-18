@@ -90,7 +90,7 @@
 
 
             /**
-             * Poll handler to refresh the jobs at regular intervals.
+             * Poll handler to refresh the stats at regular intervals.
              */
             refreshStatsPeriodically() {
                 Promise.all([
