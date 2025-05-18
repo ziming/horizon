@@ -18,13 +18,20 @@
             keepAlive: {
                 type: Boolean,
                 default: false,
+            },
+
+            immediate: {
+                type: Boolean,
+                default: true,
             }
         },
 
 
         beforeMount() {
             this.updatePollingInterval();
-            this.emitPoll();
+            if (this.immediate) {
+                this.emitPoll();
+            }
         },
 
 

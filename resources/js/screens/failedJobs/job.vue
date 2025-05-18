@@ -95,7 +95,7 @@
 
 <template>
     <div>
-        <poll @poll="reloadRetries" />
+        <poll @poll="reloadRetries" :immediate="false" />
 
         <div class="card overflow-hidden">
             <div class="card-header d-flex align-items-center justify-content-between">
