@@ -1,4 +1,4 @@
-<script type="text/ecmascript-6">
+<script>
     export default {
         data() {
             return {
@@ -106,6 +106,11 @@
                     this.emitPoll();
                 }
             },
+        },
+
+
+        render(h) {
+            return null;
         }
     }
 </script>
