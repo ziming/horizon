@@ -3,7 +3,7 @@
         data() {
             return {
                 loading: 0,
-                lastExecTime: 0,
+                lastExecutionTime: 0,
                 pollingInterval: null,
             }
         },
@@ -29,6 +29,7 @@
 
         beforeMount() {
             this.updatePollingInterval();
+
             if (this.immediate) {
                 this.emitPoll();
             }
@@ -62,13 +63,14 @@
                 this.loading++;
                 this.$emit('poll');
                 this.loading--;
-                this.lastExecTime = Date.now();
+                this.lastExecutionTime = Date.now();
             },
 
 
             removeListener() {
                 if (this.poll) {
                     clearInterval(this.poll);
+
                     this.poll = null;
                 }
             },
@@ -90,7 +92,7 @@
                 if (document.visibilityState === 'visible') {
                     this.pollingInterval = 1000 * this.interval;
                 } else if (document.visibilityState === 'hidden') {
-                    // one hour
+                    // One hour...
                     this.pollingInterval = 1000 * 60 * 60;
                 }
             },
@@ -102,7 +104,7 @@
                 this.createListener();
 
                 // throttling
-                if ((Date.now() - this.lastExecTime) >= this.pollingInterval) {
+                if ((Date.now() - this.lastExecutionTime) >= this.pollingInterval) {
                     this.emitPoll();
                 }
             },
