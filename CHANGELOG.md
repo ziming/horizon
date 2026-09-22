@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/horizon/compare/v5.49.0...5.x)
+## [Unreleased](https://github.com/laravel/horizon/compare/v5.50.0...5.x)
+
+## [v5.50.0](https://github.com/laravel/horizon/compare/v5.49.0...v5.50.0) - 2026-09-15
+
+* Add logarithmic auto-scaling strategy by [@Gummibeer](https://github.com/Gummibeer) in https://github.com/laravel/horizon/pull/1818
+* Fix "Delayed Until" showing the same time as "Pushed" for interval de… by [@AdilAzhariOmsan](https://github.com/AdilAzhariOmsan) in https://github.com/laravel/horizon/pull/1819
 
 ## [v5.49.0](https://github.com/laravel/horizon/compare/v5.48.3...v5.49.0) - 2026-09-07
 
